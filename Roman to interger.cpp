@@ -43,3 +43,42 @@
 // s contains only the characters ('I', 'V', 'X', 'L', 'C', 'D', 'M').
 // It is guaranteed that s is a valid roman numeral in the range [1, 3999].
 ///////////////////////////////solution//////////////////////////////////////////////////////
+class Solution {
+public:
+    
+    int roman_value(char c){
+        if(c=='I')
+            return 1;
+        else if(c=='V')
+            return 5;
+        else if(c=='X')
+            return 10;
+        else if(c=='L')
+            return 50;
+        else if(c=='C')
+            return 100;
+        else if(c=='D')
+            return 500;
+        else if(c=='M')
+            return 1000;
+        return -1;
+    }
+    int romanToInt(string s) {
+        int result=0;
+       
+        for(int i=0;i<s.size();){
+             int x=roman_value(s[i]);
+        int y=roman_value(s[i+1]);
+            if(x>=y){
+                result+=x;
+                i++;
+            }
+            else{
+                
+                     result=result+(y-x);
+                i=i+2;
+            }
+        }
+        return result;
+    }
+};
