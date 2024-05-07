@@ -21,16 +21,25 @@ public:
        }
        ListNode*temp=prev;
        int divident=0;
-       int rem=0;
+       
        while(temp!=nullptr){
-         rem=(temp->val*2)%10 + divident;
+         int rem=(temp->val*2)%10 + divident;
         divident=temp->val*2/10;
         temp->val=rem;
+        if(divident!=0&&temp->next==nullptr){
+            temp->next=new ListNode(divident);
+            break;
+        }
         temp=temp->next;
        }
-       if(rem!=0){
-        prev->next=new Linke
-       }
-       return  prev;
+      ListNode*result=nullptr;
+      while(prev!=nullptr){
+        ListNode*front=prev->next;
+        prev->next=result;
+        result=prev;
+        prev=front;
+      }
+
+       return  result;
     }
 };
